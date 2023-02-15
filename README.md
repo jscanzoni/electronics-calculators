@@ -1,6 +1,8 @@
 # Electronics Calulators
 
-A mix of python scripts to speed up working on electronics
+A mix of python scripts to speed up working on electronics. 
+
+This repository was created while enrolled in [eCornell's Mechatronics Program](https://ecornell.cornell.edu/certificates/engineering/mechatronics/), but I may keep adding to it in the future.
 
 ## Closest Resistor
 
