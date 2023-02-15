@@ -24,7 +24,7 @@ resistors = [1.5, 4.7, 100, 220, 330, 470, 680, 1000, 2200,
 target = 1190
 
 # tolerance of the desired output resistance
-tolerance = .05
+tolerance = .005
 
 # set the maximum number of resistors to use in the combination
 max_resistors = 5
@@ -122,7 +122,7 @@ def unique(list1):
  # output the results
 if __name__ == '__main__':
     # duplicate the resistors list to allow for repeats of the same resistor
-    resistors = duplicate_resistors(resistors, max_resistors)
+    resistors = duplicate_resistors(resistors, max_resistors, max_repeats)
 
     # calculate the optimal combination of resistors in series
     series_combination, series_total_resistance = series(
@@ -134,12 +134,27 @@ if __name__ == '__main__':
 
     # output the results
     print('\n\n')
-    print('Resistors: {}\n'.format(unique(resistors)))
+    print('Resistor Inventory: {}\n'.format(unique(resistors)))
+    print('-----\n')
     print('Target Resistance: {} ohms ± {}%\n'.format(target, tolerance * 100))
-    print('Series Combination: {}'.format(series_combination))
-    print('Series Total Resistance: {} ohms ({} off)\n'.format(
-        series_total_resistance, abs(series_total_resistance-target)))
-    print('Parallel Combination: {}'.format(parallel_combination))
-    print('Parallel Total Resistance: {} ohms ({} off)\n'.format(
-        parallel_total_resistance, abs(parallel_total_resistance-target)))
+
+    print('---SERIES---\n')
+
+    if series_total_resistance is not None and series_total_resistance > 0:
+        print('Series Combination: {}'.format(series_combination))
+        print('Series Total Resistance: {} ohms ({} off)\n'.format(
+            series_total_resistance, round(abs(series_total_resistance-target), 2)))
+    else:
+        print('No combination of resistors in series can get within {}% of {} ohms'.format(
+            round(tolerance * 100, 5), target))
+
+    print('---PARALLEL---\n')
+
+    if parallel_total_resistance is not None and parallel_total_resistance > 0:
+        print('Parallel Combination: {}'.format(parallel_combination))
+        print('Parallel Total Resistance: {} ohms ({} off)\n'.format(
+            parallel_total_resistance, round(abs(parallel_total_resistance-target), 2)))
+    else:
+        print('No combination of resistors in parallel can get within {}% of {} ohms'.format(
+            round(tolerance * 100, 5), target))
     print('\n\n')
