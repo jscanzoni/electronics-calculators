@@ -29,7 +29,7 @@ tolerance = .005
 # set the maximum number of resistors to use in the combination
 max_resistors = 5
 
-# set the maximum number of resistors to use in the combination
+# set the maximum number of repeats of the same resistor (assuming you don't just have one of each resistor)
 max_repeats = 10
 
 # function to duplicate the resistors list to allow for repeats of the same resistor
