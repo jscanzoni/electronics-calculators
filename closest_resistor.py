@@ -71,10 +71,10 @@ def series(resistors, target, tolerance, max_resistors):
     return (closest,), closest
 
 
-def parallel(resistors, target, tolerance, max_resistors=5):
+def parallel(resistors, target, tolerance, max_resistors):
     # create a list of resistances that are at least `target` ohms
     # this helps to reduce the number of combinations we have to calculate
-    candidate_resistors = [r for r in resistors if r > target]
+    candidate_resistors = [r for r in resistors if r >= target]
 
     # initialize the closest combination and its total resistance
     closest = None
